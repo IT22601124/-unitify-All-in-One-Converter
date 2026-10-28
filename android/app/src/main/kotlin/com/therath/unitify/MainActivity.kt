@@ -1,4 +1,4 @@
-package com.example.unitify
+package com.therath.unitify
 
 import io.flutter.embedding.android.FlutterActivity
 

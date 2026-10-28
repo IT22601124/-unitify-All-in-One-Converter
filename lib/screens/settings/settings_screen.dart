@@ -39,7 +39,7 @@ class SettingsScreen extends StatelessWidget {
       title: const Text('Privacy Policy'),
       content: const SingleChildScrollView(
         child: Text(
-          'Unitify performs all conversions on your device. It does not collect, transmit, sell, or share personal data. Theme, preferences, favorites, and conversion history are stored locally on your device and can be cleared in Settings or by uninstalling the app. Unitify contains no analytics, advertising, accounts, or network services.',
+          'Unitify performs all conversions on your device. It does not collect, sell, or share personal data. Theme, preferences, favorites, and conversion history are stored locally on your device and can be cleared in Settings or by uninstalling the app. Unitify contains no analytics, advertising, accounts, or backend service. It connects to the public Google Play listing only to check for a newer app version and when you choose to update.',
         ),
       ),
       actions: [

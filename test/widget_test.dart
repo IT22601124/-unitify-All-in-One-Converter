@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:unitify/app.dart';
 import 'package:unitify/providers/app_state.dart';
+import 'package:upgrader/upgrader.dart';
 
 void main() {
   setUp(() => SharedPreferences.setMockInitialValues({}));
@@ -65,6 +66,7 @@ void main() {
     tester,
   ) async {
     await pumpApp(tester);
+    expect(find.byType(UpgradeAlert), findsOneWidget);
     expect(find.text('Convert Anything'), findsOneWidget);
     expect(find.text('Length'), findsOneWidget);
     expect(find.text('Favorites'), findsWidgets);

@@ -14,8 +14,12 @@ if (hasReleaseSigning) {
     keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 }
 
+fun releaseSigningProperty(name: String): String =
+    keystoreProperties.getProperty(name)?.takeIf { it.isNotBlank() }
+        ?: throw GradleException("Missing '$name' in ${keystorePropertiesFile.path}")
+
 android {
-    namespace = "com.example.unitify"
+    namespace = "com.therath.unitify"
     compileSdk = 36
     ndkVersion = flutter.ndkVersion
 
@@ -25,8 +29,7 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.unitify"
+        applicationId = "com.therath.unitify"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
@@ -38,19 +41,36 @@ android {
     signingConfigs {
         if (hasReleaseSigning) {
             create("release") {
-                keyAlias = keystoreProperties["keyAlias"] as String
-                keyPassword = keystoreProperties["keyPassword"] as String
-                storeFile = file(keystoreProperties["storeFile"] as String)
-                storePassword = keystoreProperties["storePassword"] as String
+                keyAlias = releaseSigningProperty("keyAlias")
+                keyPassword = releaseSigningProperty("keyPassword")
+                storeFile = file(releaseSigningProperty("storeFile"))
+                storePassword = releaseSigningProperty("storePassword")
             }
         }
     }
 
     buildTypes {
         release {
-            signingConfig = signingConfigs.getByName(if (hasReleaseSigning) "release" else "debug")
+            if (hasReleaseSigning) {
+                signingConfig = signingConfigs.getByName("release")
+            }
             isMinifyEnabled = true
             isShrinkResources = true
+        }
+    }
+}
+
+if (!hasReleaseSigning) {
+    val appProject = project
+    gradle.taskGraph.whenReady {
+        val releaseTaskRequested = allTasks.any { task ->
+            task.project == appProject && task.name.contains("release", ignoreCase = true)
+        }
+        if (releaseTaskRequested) {
+            throw GradleException(
+                "Release signing is not configured. Copy android/key.properties.example " +
+                    "to android/key.properties and add the upload-keystore credentials."
+            )
         }
     }
 }

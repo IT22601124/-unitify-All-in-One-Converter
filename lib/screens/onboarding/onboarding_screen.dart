@@ -104,7 +104,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       eyebrow: 'PRIVATE BY DESIGN',
                       title: 'Works anywhere.\nStays on your device.',
                       description:
-                          'No account, no ads, and no internet required. Your preferences and history stay local.',
+                          'No account, no ads, and conversions work offline. Your preferences and history stay local.',
                       illustration: _PrivacyIllustration(),
                     ),
                   ],

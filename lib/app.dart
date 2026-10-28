@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:upgrader/upgrader.dart';
 
 import 'core/theme/app_theme.dart';
 import 'providers/app_state.dart';
@@ -25,7 +26,10 @@ class UnitifyApp extends StatelessWidget {
       home: AnimatedSwitcher(
         duration: const Duration(milliseconds: 350),
         child: hasCompletedOnboarding
-            ? const AppShell(key: ValueKey('app-shell'))
+            ? UpgradeAlert(
+                key: const ValueKey('app-shell'),
+                child: const AppShell(),
+              )
             : const OnboardingScreen(key: ValueKey('onboarding')),
       ),
     );

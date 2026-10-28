@@ -1,8 +1,8 @@
 # Unitify – All-in-One Converter
 
-A production-oriented, offline Android unit converter built with Flutter and Material 3. Unitify includes 14 categories, smart search, favorites, a 100-entry history, instant validation, configurable precision, and light/dark/system themes.
+A production-oriented Android unit converter built with Flutter and Material 3. Unitify includes 14 categories, smart search, favorites, a 100-entry history, instant validation, configurable precision, and light/dark/system themes.
 
-All calculations and application data remain on the device. The app includes no advertising, analytics, tracking, account system, backend, or network permission.
+All calculations and application data remain on the device. The app includes no advertising, analytics, tracking, account system, or backend. Conversion works offline; a network connection is used only to check Google Play for a newer app version.
 
 ## Features
 
@@ -15,6 +15,7 @@ All calculations and application data remain on the device. The app includes no 
 - Locally bundled Poppins typography; no runtime font download
 - Responsive Material 3 interface with edge-to-edge Android layouts
 - Persistent theme, decimal precision, and preferred category
+- Google Play update prompts when a newer public version is available
 
 ## Requirements
 
@@ -57,7 +58,7 @@ lib/
 
 ## Android release signing
 
-The repository never stores signing secrets. The release build reads `android/key.properties` when present and uses the debug key only as a local fallback.
+The repository never stores signing secrets. The release build reads `android/key.properties` and stops with an error when it is missing; it never falls back to a debug key.
 
 1. Create an upload key and keep it outside the repository.
 2. Copy `android/key.properties.example` to `android/key.properties`.
@@ -65,11 +66,11 @@ The repository never stores signing secrets. The release build reads `android/ke
 4. Store the keystore and credentials in a secure password manager/CI secret store.
 5. Run `flutter build appbundle --release` and verify the resulting AAB signature before uploading.
 
-Also replace the placeholder `com.example.unitify` application ID in `android/app/build.gradle.kts` and Kotlin package path before the first Play release. Application IDs cannot be changed after publication.
+The Android application ID and Kotlin package are set to `com.therath.unitify`. Application IDs cannot be changed after publication.
 
 ## Play Store release checklist
 
-- [ ] Replace `com.example.unitify` with a developer-owned, unique application ID.
+- [x] Replace the placeholder Android application ID with a developer-owned, unique value (`com.therath.unitify`).
 - [ ] Configure the upload keystore without committing `key.properties` or the keystore.
 - [ ] Keep `targetSdk` at the current Play requirement. As of October 26, 2026, new apps and updates must target Android 16 / API 36 or higher.
 - [ ] Run `flutter analyze`, `flutter test`, and a release AAB build.

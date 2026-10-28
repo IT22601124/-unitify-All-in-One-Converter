@@ -1,12 +1,12 @@
 # Unitify Privacy Policy
 
-**Effective date:** October 26, 2026
+**Effective date:** October 28, 2026
 
-Unitify – All-in-One Converter ("Unitify") is an offline utility application.
+Unitify – All-in-One Converter ("Unitify") is a utility application whose conversion features work offline.
 
 ## Data collection
 
-Unitify does not collect, transmit, sell, rent, or share personal data. The app has no user accounts, advertising, analytics, tracking SDKs, or backend service. Conversion calculations run entirely on the user's device.
+Unitify does not collect, sell, rent, or share personal data. The app has no user accounts, advertising, analytics, tracking SDKs, or backend service. Conversion calculations run entirely on the user's device.
 
 ## Data stored on the device
 
@@ -14,7 +14,7 @@ Unitify stores the selected theme, decimal precision, default category, favorite
 
 ## Permissions and network access
 
-Unitify does not request sensitive Android permissions and does not require an internet connection.
+Unitify does not request sensitive Android permissions. Its conversion features do not require an internet connection. The app connects to the public Google Play listing to check whether a newer version is available and to open that listing when the user chooses to update. Unitify does not include preferences, favorites, history, or conversion values in that request.
 
 ## Children
 
